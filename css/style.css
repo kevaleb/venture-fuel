@@ -1807,10 +1807,8 @@ video#bgvid {
 	margin: 0 0 0 48px;
 	/*border: 10px solid #fff;*/
 	box-shadow: 0px 3px 5px rgba(0,0,0,.15);
-	/*clip-path: polygon(30% 0, 100% 1%, 100% 100%, 0 100%, 0 30%);*/
-	/*clip-path: polygon(25% 0%, 100% 1%, 100% 100%, 25% 100%, 0% 50%);*/
-	
-	clip-path: circle(50% at 50% 50%);
+	/*clip-path: polygon(30% 0, 100% 1%, 100% 100%, 0 100%, 0 30%);	*/
+	/*clip-path: circle(50% at 50% 50%);*/
 }
 
 .alternating > div > hgroup {
@@ -1862,12 +1860,12 @@ video#bgvid {
 }
 .alternating > div > hgroup > article > p {
 	position: relative;
-	top: 12px;
-	font: 200 18px/36px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	top: 3px;
+	font: 200 18px/24px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
 	margin: 0 0 12px 0;
 	color: inherit;
 	
-	color: rgba(0,0,0,0);
+	color: rgba(0,0,0,.75);
 	transition: all .5s ease-in 0s;
 }
 .alternating > div > hgroup:hover > article > p {
@@ -2127,34 +2125,7 @@ video#bgvid {
 
 /* @end */
 
-/* @group Partners */
 
-.partners {
-	
-}
-.partners > ul {
-	max-width: 960px;
-	margin: 0 auto;
-	padding: 48px 0;
-	text-align: center;
-	list-style: none;
-}
-.partners > ul > li {
-	
-}
-.partners > ul > li > a {
-	display: inline-block;
-}
-.partners > ul > li > a > img {
-	position: relative;
-	top: 0;
-	transition: all .3s ease-in-out 0s;
-}
-.partners > ul > li > a:hover > img {
-	top: -6px;
-}
-
-/* @end */
 
 
 
