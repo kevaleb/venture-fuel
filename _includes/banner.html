@@ -1,0 +1,32 @@
+<div class="banner half" id="banner" style="background-image: url('{{ page.banner_image_path }}');">
+	{% if page.banner_video_path %}
+		<video playsinline autoplay muted loop poster="{{ banner_video_poster_path: }}" id="bgvid">
+		    <source src="{{page.banner_video_path}}" type="video/mp4" />
+		</video>
+	{% endif %}
+	<hgroup class="">
+		{% if page.banner_logo_path %}
+		<img src="{{ page.banner_logo_path }}" alt="" />
+		{% endif %}
+		{% if page.banner_headline %}
+		<h1 class="animate-right">{{ page.banner_headline }}</h1>
+		{% endif %}
+		
+		{% if page.banner_animation %}
+		<div class="animation" id="bannerAnimation"></div>
+		{% endif %}
+	</hgroup>
+	<img class="banner-bottom" src="/images/other/banner-bottom.svg" alt="" />
+</div>
+
+{% if page.banner_animation %}
+<script type="text/javascript">
+	lottie.loadAnimation({
+	  container: document.getElementById('bannerAnimation'), // the dom element that will contain the animation
+	  renderer: 'svg',
+	  loop: false,
+	  autoplay: true,
+	  path: '{{ page.banner_animation }}' // the path to the animation json
+	});
+</script>
+{% endif %}

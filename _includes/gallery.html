@@ -1,0 +1,7 @@
+<div class="photo-gallery">
+	{% for photo in page.photos %}
+	<a href="{{ photo.photo_path }}" class="strip" data-strip-group="group">
+		<img src="{{ photo.photo_path }}" alt="" />
+	</a>
+	{% endfor %}
+</div>

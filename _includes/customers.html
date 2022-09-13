@@ -1,0 +1,29 @@
+<div class="customers">
+	<h2>Featured Projects</h2>
+	<ul>
+	{% for customer in filtered-customers %}
+		{% for project in customer.projects %}
+		<li>
+			{% if project.youtube_video_id %}
+			<div class="videoBlock">
+				<div class="videoWrapper">
+					<iframe width="560" height="315" src="https://www.youtube.com/embed/{{ customer.youtube_video_id }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+				</div>
+				<!--<img src="/images/other/video_shadow.svg" alt="video shadow" />-->
+			</div>
+			{% elsif project.image_path %}
+			<div class="photo" style="background-image: url('{{ project.image_path }}');"></div>
+			{% else %}
+			<div class="photo" style="background-image: url('/images/icons/solar-panel-grey.svg');"></div>
+			{% endif %}
+			
+			<hgroup>
+				<h3>{{ customer.name }}</h3>				
+				<h4><strong><img src="/images/icons/lightning-blue.svg" alt="" />{{ project.size }}</strong> {{ project.city }}</h4>
+			</hgroup>
+			
+		</li>
+		{% endfor %}
+	{% endfor %}
+	</ul>
+</div>

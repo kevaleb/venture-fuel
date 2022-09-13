@@ -1,0 +1,27 @@
+<div class="contact-info" id="contact">
+	
+	
+	<h1>Reach Out TO Us</h1>
+	<h2>We'd Love To Talk</h2>
+	{% if site.data.info.phone %}
+		<p>
+			<strong><img src="/images/icons/phone.svg" alt="Phone" />Phone</strong>
+			<a href = "tel: {{ site.data.info.phone }}">{{ site.data.info.phone }}</a>
+		</p>
+	{% endif %}
+	<!--<p>-->
+	<!--	<strong><img src="/images/icons/marker.svg" alt="Address" />Address</strong>-->
+	<!--	<a href="{{ site.data.info.map_link }}" target="_blank">{{ site.data.info.address }}<br />{{ site.data.info.city }}, {{ site.data.info.state }} {{ site.data.info.zip }}</a>-->
+	<!--</p>-->
+	{% if site.data.info.email %}
+		<p>
+			<strong><img src="/images/icons/mail.svg" alt="Email" /> Email</strong>
+			<a href ="mailto: {{site.data.info.email}}">{{ site.data.info.email }}</a>
+		</p>
+	{% endif %}
+	
+	
+	
+	
+	
+</div>

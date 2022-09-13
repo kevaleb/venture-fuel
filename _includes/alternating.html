@@ -1,0 +1,55 @@
+<div class="alternating" id="aboutus">
+	{% if include.title %}
+	<h2>{{ include.title }}</h2>
+	{% endif %}
+	{% for feature in page.features %}
+	<div class="{% if feature.bg_image %}bg{% endif %}">
+		
+		
+		
+		{% if feature.feature_image_path %}
+		<img src="{{ feature.feature_image_path }}" alt="" data-aos="fade-up"
+		     data-aos-duration="3000"/>
+		{% endif %}
+		
+		{% if feature.youtube_id %}
+		<div class="video-wrapper">
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/{{ feature.youtube_id }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+			<img src="/images/other/video_shadow.svg" alt="video shadow" />
+		</div>
+		{% endif %}
+		
+		<hgroup>
+			<article>
+				<h2>{{ feature.feature_title }}</h2>
+				{%  if feature.feature_description_html %}
+					{{ feature.feature_description_html }}
+				{% elsif feature.feature_description_markdown %}
+					{{ feature.feature_description_markdown | markdownify }}
+				{% endif %}
+				
+				<!--<div class="photos">
+					<a href="{{ feature.bg_image }}" style="background-image: url( {{ feature.bg_image }});" data-strip-group="photos" class="strip"></a>
+					<a href="{{ feature.feature_image_path }}" style="background-image: url( {{ feature.feature_image_path }} );" data-strip-group="photos" class="strip"></a>
+				</div>-->
+			</article>
+			
+			{% if feature.special_info %}
+			<ul class="special-info">
+				{% for item in feature.special_info %}
+				<li title="{{ item.info_title }}">{{ item.info }}</li>
+				{% endfor %}
+			</ul>
+			{% endif %}
+			
+			{% unless feature.button_url == nil %}
+			<br />
+			<a href="{{ feature.button_url }}" class="button strip">{{ feature.button_text }}</a>
+			{% endunless %}
+			
+		</hgroup>
+		
+		<div class="bg-img {% if feature.feature_image_path %}blurry{% endif %}" style="background-image: url('{{ feature.bg_image }}');"></div>
+	</div>
+	{% endfor %}
+</div>

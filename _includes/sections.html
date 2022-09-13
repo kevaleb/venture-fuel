@@ -1,0 +1,23 @@
+<div class="sections">
+	{% if include.title %}
+	<h2>{{ include.title }}</h2>
+	{% endif %}
+	<ul>
+		{% for section in page.sections %}
+		<li>
+			{% if section.icon %}
+			<div class="icon">
+				<img src="{{ section.icon }}" alt="" />
+			</div>
+			{% endif %}
+			<h4>{{ section.title }}</h4>
+			<article>
+				{{ section.description }}
+			</article>
+			{% if section.url %}
+			<a href="{{ section.yrl }}" class="button">{{ section.button_text }}</a>
+			{% endif %}
+		</li>
+		{% endfor %}
+	</ul>
+</div>

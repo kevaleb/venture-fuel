@@ -1,0 +1,11 @@
+<nav>
+	<!--<a href="/" {% if page.url == '/' %}class="selected"{% endif %}>Home</a>-->
+<!--{% assign navitems = site.main-pages | sort: 'navorder'  %}
+{% for item in navitems %}
+	<a href="{{ item.url }}" {% if page.url contains item.navclass %}class="selected"{% endif %} {% if item.hide_from_nav == true %}style="display: none;"{% endif %}>{{ item.navtitle }}</a>
+{% endfor %}-->
+	<a href="#">Home</a>
+	<a href="#hiring">We're Hiring</a>
+	<a href="#aboutus">About Us</a>
+	<a href="#contact" >Contact</a>
+</nav>

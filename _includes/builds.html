@@ -1,0 +1,25 @@
+<div class="projects">
+	<ul>
+		{% for build in builds  %}
+		
+		{% for item in build.photos %}
+			{% if forloop.first %}
+				{% capture primaryimage %}
+					{{ item.image_path }}
+				{% endcapture %}
+			{% endif %}
+		{% endfor %}
+		
+		<li>
+			<a href="{{ build.url }}">
+				<div class="photo" style="background-image: url({{ primaryimage }});"><img src="/images/other/hex-mask.svg" alt="" />
+				</div>
+				<hgroup>
+					<h2>{{ build.title }}</h2>
+					<h3>{{ build.city }}</h3>
+				</hgroup>
+			</a>
+		</li>
+		{% endfor %}
+	</ul>
+</div>

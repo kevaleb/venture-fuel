@@ -1,0 +1,49 @@
+<div class="products">
+	
+	<ul>
+	{% assign sorted_products = filtered_products | sort: "post_date" | reverse %}
+	{% for product in sorted_products %}
+		
+		{% for item in product.images %}
+			{% if forloop.first %}
+				{% capture primaryimage %}{{ item.image_path }}{% endcapture %}
+			{% endif %}
+		{% endfor %}
+		
+		{% for item in site.departments %}
+			{% assign departmenttitle = item.title | downcase | replace:' ','-'  %}
+			{% if product.department == departmenttitle %}
+				{% capture departmenticon %}
+					{{ item.icon_path }}
+				{% endcapture %}
+			{% endif %}
+		{% endfor %}
+		
+			
+		<li class="{% if product.video == true %}on-sale{% endif %}">
+			<a href="{{ product.url }}">
+				<div class="image" style="background-image: url('{{ primaryimage }}');">
+					
+					{% if product.video == true %}
+					<img class="icon icons8-Circled-Play play" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAIUUlEQVR4Xu1di60VRwwdV5BQQaCCQAUhFSRUAFQQqCCkgkAFCRUEKkioAKggUEGgAkdH8kTL5u76eL57n3akq/ekuzsfH9vH9szulXS2qRKQqaOfg6cTgMlKcAJwAjBZApOHPy3gBGCyBCYPf1rACcC2BFT165TStymluyml2/YXN+B/fJbtQ0oJH7R39j/+vheRT5PlvDn84SxAVX9IKd23DwTfogGIv/ARkdctOmzVxyEAUFUI/GFK6ceUErS+Z4M1vEopvRARADO1TQVAVSH0ZxfcySihwGU9E5GXowZcjzMFgAMIfi2HaUAMBcBczW8TNd5TdADxWETAF0PaEABUFRHLr+bjhyyschBwxFMRyVFVZXfbt3cHQFVBrND63uTaWkgga1gDwOjWugKgqtD6J5Wz/2whJCIWfCCYD2vtNCuDpQFohK/4ILr6qnL85yLytLKPzdu7AGAJ1J+LxCk6//cppd8tbq8KFVU1A/HIkrroXHA95vB9j4SuOQAVwoemP4fge/lesxJYJMCIWkYXEJoCYNr2RzDKyYKHqQ8pGZiSAAh8IkAABPBClVUuTbAZALaot0Hhv7BEaIjg177H5oxE8KeAX2pqCU0AKHA78PGPWmpSQID/u9TyE7g/FP6Y1gyEVgBA89nCGdL+J6PcDSNNXGNKBBBQHmHaOxG5x1y4d001AKqKSbMmDP+J6OawTVVB0MhbmIaCXlWYXQWAJVkgXa+BaKH1hxZ+XkQQhAc1yVoxABbSwfV4GS6Ef/8o/t7TlAUIcKlYn9cQQNwrDZ1rAIDmo8zgtcO7na0FBCzhlYg88ARx6fsiACxqQKbrtasVfoE7QqYcrqKWAvA3Ee+/FBEQWqipKoAFcN0rkezEVBXc5UVHqE/dYfvM14UBIM0ScT78fjjBUlW1yWHRKAmH+4gKwbveQlRot5cnhC2+BABG+0FKRen6AgDIBcJHmItwbyoQpNsNW0EIAFL7q2LjFQBZOadtGS6tg8x5QlYQBcDTfoSct2u0dQOALAdYFdxSmOw8N8N8b64IyrBXwAtZAQ0AaYK/iAiKW8XNASD3CwCmELWqYn0/OwukXXAEAC8SqNZ+LIoEIK9/OFGTVkBHgBEA/nGy3mrtLwBgClETXPBJRG4xboACgKz53GkRuwctYLnGYURtZRjw4V6jakQsAF7FEwdg2XL07qwrABhK1KqKgGAvL6CiQRYAr96PyAQgVbcGAAwhalVFGRqnPrYatV/gAmCkA/+/12jW9xBqCEBXorb9b69aessLyRkAcLZmr/D2WUS8krQn9/++7wBAN6JWVWTnezmBW6BjAPBM7bWIMGVpCoROAOSxmxK1quLUHJ5n2Gqua2YA8Ai4SfiZV9AZgKZETSRlLhEzACDr/G4HZSrcotQ/noix3W5dV5VRE+H5GxGBC99sLQBw/VxESoMsYD2looyaKM80AcArwDVJwAa7oEs6ES59EwmZG4oyFpA3SC4qsoi4fVyBBSynGCJqz2I9+bjCqx0gInxc640X7a/ieqr07c33BKAcAWyr4izT7t7DCUC5gLfu/GgHhqlDZCMAgE/8ZmedN4WEw8fkCRL+KCLrJ/q/ECXDAV4ecBPC0KIDw6PCUA+Aa07E3tgx+aIzSKMSsZtYiqAI1qOXUaWIm1SMCxEsAcCQYpxXjqb3P70FdcwDwgRLztXbJ3f5kSFh1PqveUOmiGA9AIZtyJhWevufbt3bW1CHWlAVwXrzJbYkqX1y1wIMAI+I3aKTt6CGADQhWG++qurtk7t7ARiDBQA7Xt6jSE0SMi+z3BFMU4LdA4BIwHA7FZ5TAJgVePufTXbGCgDoQrAOAJ5HoPfJIwB4RxMBEKyg6hh5EIAuBOsIH0EJ9kj2DiJ0OZrohaOYd7UVkAB0JVgHgDmHc80NeYW5aitwABhCsFsA2BkpT/vdAtyyf9oFGQDMQ8wU++8s8tIO3DCCdbTfc8O4vd8DGqQV4LLik3IrCxhOsDuKwbjgkPbTYehyUuRjSsUvs1gAMJxgHdfDvIAqpP1FAASsAC9eeuwlNOvvVRXlb7xJpahEHB2PuV5V8e4I75HbsPbXAMCYY9gfMsIYfQ1p8ZiWW3i7NPcQCa9ckVeKzZeHzXK0kHdcDxN04Pbi87E1AGCvE76eeeVXMSnPAoOsdmJ6CBTulrrMYgCMC5ga0dVZQsDtYG1UzWdLkaoAMBC8ushy7MO7o6Dwq3KeYhK+ELl4+wXLW4oOwvZ2RZbl4pEjL9rJU6Hq/d68qy3ArACFKeZlFnk+1LE/b/KtvrfjJRA++6Bh8ctI1nNuAsACBAh27xDXeny4LxTwqiqopUAUaD2Gaib8Zi4oC8AiB4SnERDCx8JLBb6YJywWLxrEiY/I823NX7fZzAJWi4u4o3wrgAA/gNi6ZMG2kwXBw89HBN9c8/OimwNQyAlrpYYrAxh4wqTovUMrq8QjVhA66+PX82nqdpaddwFgsfhIiLrlWWAZsKjl6+tRd/nCSky74frWr6+Pavp6HtWh5p7L7AqAWQOSNWgzkzHXuveW9yPDRVHwen/AYWEJKFvAGvaeqW0pvNq+8FtjEH736Ky7BSwlYfE2rCESJdUKM3I/dt4g+GFv5BoKwMIiQIjY3D4KENO2PKcAcCAgpgm+axgasXkjaoSHSIpA2L3JGuQKYsUvdlSFuNF1Xrp+qgVcmpA9dZJ/zNN7USorA8Tx+cc8u0Y17IQOZQFbk7ZaTf5JqvXP2a75A+7k0s/Z4uBw92gmKvirAKB0Udd03+Fc0DUJr8VcTwBaSLGijxOACuG1uPUEoIUUK/o4AagQXotbTwBaSLGijxOACuG1uPVfyTUKnQb172wAAAAASUVORK5CYII=" width="96" height="96">
+					{% endif %}
+					
+				</div>
+				<hgroup>
+					<h1>{{ product.title }}</h1>
+					{% if product.video == true %}
+					<h2>{{ product.price }}</h2>
+					<h3>{{ product.sale-price }}</h3>
+					{% endif %}
+					
+					{% if product.on-sale == true %}
+					<img class="icon icons8-Sale-Filled sale" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAFBklEQVRoQ91aS3biVhC9BR74M4izgtAzGwbBg5yISVpaQdwrMFlB0yswXkHwCkxWELICiUzgnAxaGUB71vQKQg9sPDCqnJJ4Qgg9IYEhODqHEe9TV1Wv6tZ9IrzQ0zXK1wwyQTxm9m6t/r2TtLRtnJmEwhVAJSK43uThxnJH403NoE0XkPmOUb4DUX1hLYbDmN4oQAGA4jUIZnyc2R9Ym9qxMRDbqNSJcKc1hBF4Jg4gMoGZb6z+sLkJmI2A2D9UqnSAj5sYoOYyTy1dOGZZf20gdrV0SofHH0FUyrJRhjFjnjy8Wfe8rATS/fH8PRM1XtDgDJhCP7lgGjN5t1bvUydtYioQu3Z+SSj8nmPnrQ3lZ1xYfw1c3QbpQIxKmwhXW7Mux8KrEsIqIA4R3ubYb2tDGfyH1RteruURp1b5B8Dp1qzLtTC7Zm94kRuIn5WOTgTI3jxmb6CNIO0ffiWmor03KAAwT99Y/ftRkk2JQLpG5YoJrf0Jq3k6ZvY+JBXOBSCBFwq/AlTdJ08s28KdGaDQOyGQROK332jAjF+s/qAdUDkAdu28QRBPvL6H4b2Tqh8AMSp7Uy/yvkpm/Gb1B/WZR8otAr3Pu8g+jFcVPwDygnR81+AUBwsPu10rjwj03a4N2WQ/Zvxt9Qd+ho0CSQ0vZnwF0AF4BMIpmKQz/CZuCDO6ADsANeL/SxgAZCbxt/m8ZWhEdJ0EmOF9sHqfpN5FgKSEF4O/YPJYlabnz9rZ2596912hMDg8kSTxfXQTVX3t2vK5E4phG+VmkmFp7NapVTgRSKTSzz2i2UAWUPk6QiLHzNMLEFWj/Yq8Vas/MKWPAbNLVPwcNSALEJ3RGo/4qXdeR4yzUnzTxbccFB7bqLhzD7DfvUVFBQGMKVw64DthqovjgZcGAiBsj32POEbFTlM5AHZ58mhJaEmGw4FnggtyRsKw8s/Q00MJR8dNSeUSYkBRzkOosGQBIjRp8e0XZR9tc8fgW6s3bNBKOWe+6hjMHQI5HqZdYaHRuaowqfCTg4jJpI3Dk5E69FmAiNC3EA2+6BfTwmJxJgoMOUb58yphISnbKGpgG5WxGKrrqe1Iu5wFSJ4zEuJhHlGWiUGYQM5R2J+o1CceYPBXqzcsRY0OksTivK0BkfQb3zy5QHHH7A3f2cZZSTIVngsjUTQU2VRhREcnkqXC1ljFryq2ug5PXuY66VfZKtmSdPVgCZC4D2gTeQ57VGUqXKrYJaDFzKdL+i8wJuZWIG7DhJJP44vP/iO/kC4/TKSVU6W64+nBDLiWprhtQh92MVeBkGw6L4ivDEwUxAJFCT1zdOzuO3mMUibl+SXxYb+0LE3qmVGh6L9JQBIJ2i5iPsceY7M3+Pb/AMTnbVogUifSyGOON7b1oelAXlHLmwrEz1yvoOWVrCWUKPWMBDTdZ7l72b/7qfeZLuOXPnoRW9N3bD34kyiK0BBiB+x1dBemK+8QI4WyTaCfdwlELnfAXkOnwKeGls7Q/0L7ynNlnckjCtwupdWoZpUlCvICSf/KIcuOGcdElfYsU3IB2VV6FiHD6g9y3V2uAWTx7n2mQLq+ukgiERWacdEu/kZ9Ck5eEywXSiSqSVUJFP565NVXfSAQXzM3EN8r0vIC8hvFM4rfpB0dazOcn4kmj/X4pxrhmk9P7jqfcawFJEvMJkmmqy79s6yrG7M1IDPPmaBCw9+cvdYmX/+sAvkvMWXp1QZKb00AAAAASUVORK5CYII=" width="50" height="50">
+					{% else %}
+					<img src="{{ departmenticon }}" alt="{{ product.department }}" />
+					{% endif %}
+				</hgroup>
+			</a>
+		</li>
+	{% endfor %}
+	</ul>
+</div>

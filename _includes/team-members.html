@@ -1,0 +1,14 @@
+<div class="team">
+	<h2>Our Team</h2>
+	<ul>
+		{% for member in site.team-members %}
+		<li>
+			<div class="photo" style="background-image: url('{{ member.photo_path }}');"></div>
+			<hgroup>
+				<h3>{{ member.name }}</h3>
+				<h4>{{ member.title }}</h4>
+			</hgroup>
+		</li>
+		{% endfor %}
+	</ul>
+</div>

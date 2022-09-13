@@ -1,0 +1,95 @@
+---
+layout: default
+permalink: /
+navtitle: Home
+navclass: /
+navorder: 1
+hide_from_nav: true
+banner_headline:
+banner_animation:
+banner_logo_path: /images/logos/logo-white.svg
+banner_image_path:
+banner_video_path: /videos/bg.mp4
+video_id:
+features:
+  - feature_title: Integrity
+    feature_image_path: /images/photos/hand-shake.jpg
+    bg_image:
+    feature_description_html: >-
+      <p>We do the right thing without compromising our customers or partners.</p>
+    button_url:
+    button_text:
+  - feature_title: Synergy
+    feature_image_path: /images/photos/synergy.jpg
+    bg_image:
+    feature_description_html: >-
+      <p>We strategically align resources to improve value…continuously.</p>
+    button_url:
+    button_text:
+  - feature_title: Vision
+    feature_image_path: /images/photos/vision.jpg
+    bg_image:
+    feature_description_html: >-
+      <p>We build with imagination and discipline, always with the end in mind.</p>
+    button_url:
+    button_text:
+  - feature_title: Service
+    feature_image_path: /images/photos/service2.jpg
+    bg_image:
+    feature_description_html: >-
+      <p>We positively engage, serve, and satisfy.</p>
+    button_url:
+    button_text:
+---
+{% include banner.html %}
+
+<div class="hiring" id="hiring">
+	<h1>We're Hiring!</h1>
+	<ul>
+		<li>Cashiers</li>
+		<li>Line Cooks</li>
+		<li>Maintenance</li>
+		<li>And More</li>
+	</ul>
+	
+	<h2>Apply Now</h2>
+	<a href="mailto: {{site.data.info.email}}">{{ site.data.info.email }}</a>
+</div>
+
+
+<!--<article style="text-align: center;" id="vision" class="featured-article">
+	<img src="/images/icons/eye.svg" alt="" />
+	<h3>Our Vision</h3>
+	<p>Raising the standard of living through innovative solutions that maximize market value.</p>
+</article>
+
+<article style="text-align: center;" id="mission" class="featured-article">
+	<img src="/images/icons/mission.svg" alt="" />
+	<h3>Our Mission</h3>
+	<p>We excel in raising market value, generating superior returns for our investors and providing greater satisfaction for our customers. We foster a culture of continuous improvement and lasting relationships.</p> 
+</article>-->
+
+
+
+{% include alternating.html %}
+
+<!--<div class="partners">
+	<ul>
+		<li>
+			<a href="http://peakcapitalpartners.com/"><img src="/images/logos/peak-capital.png" alt="" /></a>
+		</li>
+	</ul>
+</div>-->
+
+
+<script type="text/javascript">
+	$(window).scroll(function(){
+	    if ($(this).scrollTop() > 50) {
+	       $('header').addClass('dark');
+	    } else {
+	       $('header').removeClass('dark');
+	    }
+	});
+</script>
+
+
